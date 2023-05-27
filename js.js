@@ -1,20 +1,17 @@
-function First() {}
+"use strict";
+class First {
+  hello() {
+    console.log("Привет я метод родителя!");
+  }
+}
 
-First.prototype.hello =  () => {
-  console.log("Привет, я метод родителя!");
-};
+class Second extends First {
+  hello() {
+    super.hello(); 
+    console.log("А я наследуемый метод!");
+  }
+}
 
-function Second() {}
+const dev = new Second();
 
-Second.prototype = Object.create(First.prototype);
-
-Second.prototype.hello = () => {
-  First.prototype.hello.call(this);
-
-  console.log("А я наследуемый метод!");
-};
-
-const obj = new Second();
-
-
-obj.hello();
+dev.hello();
